@@ -1,0 +1,235 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<title>Test 24 - Officer Safety (All 38)</title>
+<style>
+  body { font-family: Arial, sans-serif; background:#0b1c2d; color:#fff; padding:20px; }
+  h1 { text-align:center; margin-bottom: 10px; }
+  .question { background:#142f4c; padding:15px; margin-bottom:15px; border-radius:8px; }
+  .options label { display:block; margin:6px 0; cursor:pointer; line-height: 1.3; }
+  button { padding:12px 20px; font-size:16px; background:#1abc9c; border:none; border-radius:6px; cursor:pointer; }
+  button:hover { background:#16a085; }
+  #results { margin-top:25px; background:#10263f; padding:20px; border-radius:8px; }
+  .correct { color:#2ecc71; font-weight: 700; }
+  .wrong { color:#e74c3c; font-weight: 700; }
+  .note { text-align:center; opacity:0.85; margin-bottom: 18px; }
+</style>
+</head>
+<body>
+
+<h1>Test 24 - Officer Safety (All 38 Questions)</h1>
+<div class="note">No True/False. Auto-graded. Shows what you missed.</div>
+
+<form id="quiz"></form>
+
+<button type="button" onclick="gradeQuiz()">Submit Test</button>
+
+<div id="results"></div>
+
+<script>
+(function(){
+  const questions = [
+    {q:"Which list correctly identifies the four P's of officer safety mindset?",
+      a:["Prepare, preplan, prevent, prevail","Plan, protect, pursue, prevail","Prepare, patrol, prevent, protect","Prevent, plan, persuade, prevail"], c:0},
+
+    {q:"Which distance best describes the proper reactionary gap during a tactical approach?",
+      a:["3 feet","4 feet","6 feet","10 feet"], c:2},
+
+    {q:"Physical control is best defined as:",
+      a:["Verbal commands only","Maintaining continuous physical contact with the subject","Using restraints only","Standing nearby without contact"], c:1},
+
+    {q:"Which area of a subject's body is considered the red zone?",
+      a:["Chest","Legs","Waist","Shoulders"], c:2},
+
+    {q:"What must an officer do before conducting a search of a subject?",
+      a:["Ask investigative questions","Handcuff the subject","Remove footwear","Conduct a pat-down"], c:1},
+
+    {q:"The force necessary to safely secure or subdue a subject with minimal injury is known as:",
+      a:["Probable force","Escalation force","Force continuum","Reasonable suspicion"], c:2},
+
+    {q:"When conducting a search of a person, where should an officer begin?",
+      a:["Waist","Feet","Pockets","Head"], c:3},
+
+    {q:"Who is authorized to perform a body cavity search?",
+      a:["Any police officer","Supervisor","Licensed medical physician","Detective"], c:2},
+
+    {q:"Less-lethal force is best described as force that:",
+      a:["Causes serious bodily injury","Stops action with death or permanent disability being unlikely","Guarantees compliance","Is only verbal"], c:1},
+
+    {q:"Which of the following is an approved target area when using an ASP baton?",
+      a:["Head","Neck","Arms or legs","Spine"], c:2},
+
+    {q:"Which area should NOT be targeted when using an ASP baton?",
+      a:["Thigh","Calf","Forearm","Head"], c:3},
+
+    {q:"What are the four parts of the ASP baton?",
+      a:["Grip, shaft, handle, tip","Butt, grip, barrel, tip","Handle, rod, cap, base","Grip, rod, base, shaft"], c:1},
+
+    {q:"After deploying OC spray, how long should an officer wait before making first contact?",
+      a:["Immediately","1-2 seconds","5-10 seconds","30 seconds"], c:2},
+
+    {q:"What method helps speed recovery after OC spray exposure?",
+      a:["Warm water","Ice and cool water","Medication","Covering eyes"], c:1},
+
+    {q:"Which list correctly identifies the four major contributors to in-custody deaths?",
+      a:[
+        "Heart attack, asthma, stroke, dehydration",
+        "Positional asphyxia, cocaine intoxication, excited delirium, and neuroleptic malignant syndrome",
+        "Heat stroke, hypothermia, panic, shock",
+        "Bleeding, concussion, seizure, overdose"
+      ], c:1},
+
+    {q:"Which condition is associated with violent, bizarre behavior and visual hallucinations (especially toward glass)?",
+      a:["Cocaine intoxication","Positional asphyxia","Excited delirium","Neuroleptic malignant syndrome"], c:2},
+
+    {q:"Which situation most commonly increases the risk of SICDS?",
+      a:["Sleeping subject","Calm detainee","Physical activity or intoxication","Seated transport"], c:2},
+
+    {q:"Which is considered a physical cause of respiratory distress?",
+      a:["Anxiety","Fear","Blood or blockage in the airway","Panic"], c:2},
+
+    {q:"What is the most effective way to prevent positional asphyxia?",
+      a:["Maximum restraint","Rapid transport only","Recognition and mitigation","Continuous verbal commands"], c:2},
+
+    {q:"Which combination may indicate suicide risk in a detained person?",
+      a:[
+        "Loud voice and aggression",
+        "Refusal to answer questions",
+        "Depressed demeanor, soft tone, and suicidal statements",
+        "Requesting an attorney"
+      ], c:2},
+
+    {q:"Which statement may indicate suicidal intent?",
+      a:[
+        "I want my property back",
+        "I need to call my family",
+        "My life is over, I want to die",
+        "I want to see a judge"
+      ], c:2},
+
+    {q:"When suicide risk indicators are present, officers should:",
+      a:[
+        "Ignore unless behavior escalates",
+        "Document only",
+        "Continuously monitor and notify a supervisor and advise next shift",
+        "Release immediately"
+      ], c:2},
+
+    {q:"Before transporting a prisoner, officers must ensure the subject is free of:",
+      a:["Identification","Outer clothing","Any items that could be used as weapons or tools","Personal property"], c:2},
+
+    {q:"During a prisoner search, officers should:",
+      a:["Use both hands to search","Release control to search","Search with one hand while controlling with the other","Allow the subject to assist"], c:2},
+
+    {q:"When two officers transport one prisoner, where should the prisoner be seated?",
+      a:["Front passenger seat","Left rear seat","Right rear seat","Middle rear seat"], c:2},
+
+    {q:"In a restaurant with a prisoner, where should an officer position themselves?",
+      a:[
+        "Back to the door",
+        "Closest to the prisoner",
+        "Facing the door, against the wall, weapon away from the prisoner",
+        "Anywhere convenient"
+      ], c:2},
+
+    {q:"For safety reasons, patrol vehicles should transport no more than:",
+      a:["One prisoner","Two prisoners","Three prisoners","Four prisoners"], c:1},
+
+    {q:"Which statement correctly reflects policy regarding juvenile and female transport?",
+      a:["They may be transported together","They should always be paired","They should not be transported together","Only supervisors decide"], c:2},
+
+    {q:"When transporting a female or juvenile, what information should be provided to radio?",
+      a:["Only name","Only charge","Time and mileage, current location, and prisoner description","Destination only"], c:2},
+
+    {q:"Which procedure is correct for long-distance prisoner transport?",
+      a:["Frequent stops","Scenic routes","Shortest route, avoid delays, be cautious of closures, notify dispatch of delays","Avoid radio contact"], c:2},
+
+    {q:"Which device produces neuromuscular incapacitation (NMI)?",
+      a:["OC spray","ASP baton","Firearm","Taser"], c:3},
+
+    {q:"Which profile best matches SICDS indicators?",
+      a:[
+        "Elderly calm subject",
+        "Juvenile compliant subject",
+        "Male, age 20 to 36, intoxicated, violent or bizarre behavior, resisted arrest",
+        "Any cooperative detainee"
+      ], c:2},
+
+    {q:"Neuroleptic malignant syndrome (NMS) may occur in individuals:",
+      a:[
+        "Experiencing excited delirium",
+        "Suffering positional asphyxia",
+        "Receiving psychiatric drug therapy (e.g., schizophrenia or manic depression treatment)",
+        "Only during handcuffing"
+      ], c:2},
+
+    {q:"In-custody deaths can occur when prisoners are handcuffed to the rear. Which is NOT associated as a concern?",
+      a:["Restricted breathing","Positional asphyxia risk","Decreased body temperature","Increased risk of respiratory distress"], c:2},
+
+    {q:"What is the correct order of prisoner processing?",
+      a:["Search, release, transport","Transport, search, handcuff","Handcuff, pat-down, search","Question, search, release"], c:2},
+
+    {q:"In use-of-force terminology, what is considered the delivery system?",
+      a:["Firearms","OC spray","Hands and feet","Baton and cuffs"], c:2},
+
+    {q:"Which statement correctly reflects officer search authority?",
+      a:["Only opposite-sex searches allowed","Supervisor approval required","Officers may search the same sex","Searches are prohibited after arrest"], c:2},
+
+    {q:"After an arrest, the three priorities are:",
+      a:["Question, search, release","Transport, report, release","Control, search, transport","Search, warn, transport"], c:2}
+  ];
+
+  const quiz = document.getElementById("quiz");
+  if (!quiz) return;
+
+  questions.forEach((q, i) => {
+    const div = document.createElement("div");
+    div.className = "question";
+
+    const p = document.createElement("p");
+    p.innerHTML = "<b>" + (i+1) + ".</b> " + q.q;
+    div.appendChild(p);
+
+    const optWrap = document.createElement("div");
+    optWrap.className = "options";
+
+    q.a.forEach((opt, j) => {
+      const label = document.createElement("label");
+      label.innerHTML = '<input type="radio" name="q' + i + '" value="' + j + '"> ' + opt;
+      optWrap.appendChild(label);
+    });
+
+    div.appendChild(optWrap);
+    quiz.appendChild(div);
+  });
+
+  window.gradeQuiz = function(){
+    let score = 0;
+    let output = "";
+
+    questions.forEach((q, i) => {
+      const sel = document.querySelector('input[name="q' + i + '"]:checked');
+      const chosen = sel ? Number(sel.value) : null;
+
+      if (chosen === q.c) {
+        score++;
+      } else {
+        const yourAns = (chosen === null) ? "No answer selected" : q.a[chosen];
+        output += '<div class="wrong" style="margin:10px 0;">'
+          + '<b>Q' + (i+1) + ' missed.</b><br>'
+          + '<span>Your answer: </span>' + yourAns + '<br>'
+          + '<span>Correct answer: </span><span class="correct">' + q.a[q.c] + '</span>'
+          + '</div>';
+      }
+    });
+
+    document.getElementById("results").innerHTML =
+      "<h2>Score: " + score + " / " + questions.length + "</h2>" + output;
+  };
+})();
+</script>
+
+</body>
+</html>
